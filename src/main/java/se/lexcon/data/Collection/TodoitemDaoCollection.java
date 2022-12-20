@@ -78,6 +78,16 @@ public class TodoitemDaoCollection implements TodoItemsImple {
 
     @Override
     public boolean remove(Integer id) {
+        ArrayList<TodoItem> removePersonItemList = new ArrayList<>();
+        for (int i = 0; i < removePersonItemList.size(); i++) {
+            if (removePersonItemList.get(i).equals(id)){
+                System.out.println("removing person = " + removePersonItemList.get(i).getId());
+                removePersonItemList.remove(id);
+                return  true;
+
+            }
+        }
         return false;
     }
-}
+    }
+
