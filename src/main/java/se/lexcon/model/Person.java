@@ -84,4 +84,16 @@ public class Person {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", email='" + email + '\'' +
+                ", regDate=" + regDate +
+                ", active=" + active +
+                '}';
+    }
 }
