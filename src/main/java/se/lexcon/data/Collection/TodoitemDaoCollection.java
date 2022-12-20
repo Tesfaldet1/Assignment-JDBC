@@ -23,7 +23,7 @@ public class TodoitemDaoCollection implements TodoItemsImple {
 
     @Override
     public TodoItem create(TodoItem todoitem) {
-        if (todoitem == null) throw new IllegalArgumentException("appUser was null");
+        if (todoitem == null) throw new IllegalArgumentException(" todoitem was null");
         todoitem.setId(TodoItemIdSequencer.nextId());
         todoItemStorage.add(todoitem);
         return todoitem;
