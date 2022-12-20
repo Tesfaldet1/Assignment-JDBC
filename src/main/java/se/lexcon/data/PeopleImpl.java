@@ -1,6 +1,5 @@
 package se.lexcon.data;
 
-import se.lexcon.data.Collection.PersonDaoCollection;
 import se.lexcon.model.Person;
 
 import java.util.List;
@@ -10,7 +9,7 @@ public interface PeopleImpl {
 
     List<Person> findAll();
 
-    Person findById(Integer ID);
+    boolean findById(Boolean ID);
 
     List<Person> findByName(List<Person> name);
 

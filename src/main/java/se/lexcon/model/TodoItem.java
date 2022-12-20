@@ -1,9 +1,23 @@
 package se.lexcon.model;
 
+import java.time.LocalDate;
+
 public class TodoItem {
     private int id;
     private String title;
     private String _description;
+    public LocalDate deadLine;
+    public boolean done;
+    public  Person assignee;
+
+    public TodoItem(int id, String title, String _description, LocalDate deadLine, boolean done, Person assignee) {
+        this.id = id;
+        this.title = title;
+        this._description = _description;
+        this.deadLine = deadLine;
+        this.done = done;
+        this.assignee = assignee;
+    }
 
     public TodoItem(String title, String _description) {
         this.title = title;
@@ -39,6 +53,30 @@ public class TodoItem {
 
     public String get_description() {
         return _description;
+    }
+
+    public LocalDate getDeadLine() {
+        return deadLine;
+    }
+
+    public void setDeadLine(LocalDate deadLine) {
+        this.deadLine = deadLine;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
+    public Person getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(Person assignee) {
+        this.assignee = assignee;
     }
 
     public void set_description(String _description) {
