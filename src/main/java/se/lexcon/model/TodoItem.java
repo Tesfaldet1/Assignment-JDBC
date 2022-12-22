@@ -83,12 +83,16 @@ public class TodoItem {
         this._description = _description;
     }
 
+
     @Override
     public String toString() {
         return "TodoItem{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", _description='" + _description + '\'' +
+                ", deadLine=" + deadLine +
+                ", done=" + done +
+                ", assignee=" + assignee +
                 '}';
     }
 }

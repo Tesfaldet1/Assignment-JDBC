@@ -4,6 +4,7 @@ import se.lexcon.model.Person;
 import se.lexcon.model.TodoItem;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface TodoItemsImple {
     TodoItem create (TodoItem todoitem);
@@ -15,10 +16,7 @@ public interface TodoItemsImple {
 
     boolean findAllByDoneStatus(boolean done);
 
-
-    Collection<TodoItem> findByAssigee (int todo);
-
-    Collection<Person> findbyAssigee (Person person);
+    Optional<TodoItem> findByAssignee (TodoItem person);
 
     TodoItem findByUnassignedTodoItem();
 

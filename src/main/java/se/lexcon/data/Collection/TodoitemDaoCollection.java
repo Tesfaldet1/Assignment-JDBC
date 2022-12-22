@@ -1,13 +1,14 @@
 package se.lexcon.data.Collection;
 
 import se.lexcon.data.IdSequencer.TodoItemIdSequencer;
+import se.lexcon.data.PeopleImpl;
 import se.lexcon.data.TodoItemsImple;
-import se.lexcon.model.Person;
 import se.lexcon.model.TodoItem;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public class TodoitemDaoCollection implements TodoItemsImple {
     private List<TodoItem> todoItemStorage;
@@ -15,6 +16,7 @@ public class TodoitemDaoCollection implements TodoItemsImple {
     private TodoitemDaoCollection() {
         todoItemStorage = new ArrayList<>();
     }
+    PeopleImpl personStorage= PersonDaoCollection.getInstance();
     public static TodoitemDaoCollection getInstance() {
         if (instance== null) instance = new TodoitemDaoCollection();
 
@@ -53,41 +55,48 @@ public class TodoitemDaoCollection implements TodoItemsImple {
             }
         }
         return false;
-
     }
 
     @Override
-    public Collection<TodoItem> findByAssigee(int todo) {
+    public Optional<TodoItem> findByAssignee(TodoItem person) {
+        for(TodoItem personStatus: todoItemStorage){
+            if(personStatus.getAssignee().equals(person)){
+                return Optional.of(personStatus);
+            }
+        }
         return null;
     }
 
     @Override
-    public Collection<Person> findbyAssigee(Person person) {
-        return null;
-    }
-
-    @Override
-    public TodoItem findByUnassignedTodoItem() {
+    public TodoItem  findByUnassignedTodoItem() {
+        for (TodoItem personStatus : todoItemStorage) {
+            if (personStatus.getAssignee() == null) {
+                return personStatus;
+            }
+        }
         return null;
     }
 
     @Override
     public void update(TodoItem toupdate) {
-
+        if(toupdate == null) throw new IllegalArgumentException("city data was null");
+        for(TodoItem OriginalTodoItem: todoItemStorage){
+            if(OriginalTodoItem.getId()==toupdate.getId()){
+                OriginalTodoItem.setId(toupdate.getId());
+                OriginalTodoItem.setTitle(toupdate.getTitle());
+                OriginalTodoItem.set_description(toupdate.get_description());
+                OriginalTodoItem.setAssignee(toupdate.getAssignee());
+                OriginalTodoItem.setDone(toupdate.isDone());
+                OriginalTodoItem.setDeadLine(toupdate.getDeadLine());
+                break;
+            }
+        }
     }
 
     @Override
     public boolean remove(Integer id) {
-        ArrayList<TodoItem> removePersonItemList = new ArrayList<>();
-        for (int i = 0; i < removePersonItemList.size(); i++) {
-            if (removePersonItemList.get(i).equals(id)){
-                System.out.println("removing person = " + removePersonItemList.get(i).getId());
-                removePersonItemList.remove(id);
-                return  true;
 
-            }
+            return  todoItemStorage.remove(findById(id));
         }
-        return false;
-    }
     }
 
